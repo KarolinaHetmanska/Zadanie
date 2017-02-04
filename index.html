@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zadanie domowe</title>
+
+</head>
+<body>
+<form id="form">
+<label>Wybierz zdjęcie
+  <input type="file" id="fileSelect" multiple accept="image/*" onchange="addingFiles(this.files)"> </label>
+
+</form>
+  <div id="fileList">
+    <p>No files selected!</p>
+  </div>
+
+
+<script type="text/javascript">
+
+
+  var
+     fileList = document.getElementById("fileList");
+  var form = document.getElementById("form")
+
+
+  function addingFiles(files) {
+    if (!files.length) {
+      fileList.innerHTML = "<p>No files selected!</p>";
+    } else {
+      fileList.innerHTML = "";
+      var list = document.createElement("ul");
+      fileList.appendChild(list);
+      for (var i = 0; i < files.length; i++) {
+        var li = document.createElement("li");
+        list.appendChild(li);
+
+        var img = document.createElement("img");
+        img.src = window.URL.createObjectURL(files[i]);
+        img.height = 60;
+       // img.onload = function() {
+       //   window.URL.revokeObjectURL(this.src);
+      // }
+        li.appendChild(img);
+
+        var changePictureButton = document.createElement("button");
+        changePictureButton.textContent = "Zmień zdjęcie";
+        li.appendChild(changePictureButton);
+        changePictureButton.addEventListener("click", changingPicture, false);
+
+
+        var removePictureButton = document.createElement("button");
+        removePictureButton.innerHTML="usuń";
+        li.appendChild(removePictureButton);
+        removePictureButton.addEventListener("click", function () {
+          removingPicture(img)
+        }, false)
+
+      }
+    }
+    function removingPicture (img) {
+      li.removeChild(img);
+      fileList.textContent = "Usunięto element"
+
+    }
+   function changingPicture () {
+      var newInput = document.createElement("input")
+     newInput.setAttribute("type", "file" )
+     newInput.setAttribute("onChange", "addingFiles(this.files)" )
+    form.appendChild(newInput)
+
+    }
+
+  }
+
+</script>
+</body>
+</html>
