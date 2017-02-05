@@ -4,68 +4,83 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="style.css">
   <title>Zadanie domowe</title>
-
 </head>
 <body>
 <form class="files-select-form">
-  <label for="files-select-input" class="file-choose-label">Wstaw zdjęcie </label>
-  <input type="file" id="files-select-input" multiple accept="image/*" style="display: none"
-         onchange="addingFiles(files)">
+  <label for="files-select-input"
+         class="file-choose-label">
+    Wstaw zdjęcie
+  </label>
+  <input type="file"
+         id="files-select-input"
+         multiple accept="image/*"
+         style="display: none"
+         onchange=addingFiles(files)>
 
-
-  <div id="display-files-place">
-  </div>
+  <div id="display-files"></div>
 </form>
 <script type="text/javascript">
-
+  //  place where files will be displayed
   var
-    displayFilesPlace = document.getElementById("display-files-place");
+    displayFiles = document.getElementById("display-files");
 
   function addingFiles(files) {
     if (!files.length) {
-      displayFilesPlace.innerHTML = "<p>Nie wybrałeś żadnego zdjęcia</p>";
+      displayFiles.innerHTML = "<p>Nie wybrałeś żadnego zdjęcia</p>";
     } else {
-      displayFilesPlace.innerHTML = "";
-      var displayFilesList = document.createElement("ul");
-      displayFilesList.classList.add("display-files-list");
-      displayFilesPlace.appendChild(displayFilesList);
+      displayFiles.innerHTML = "";
+
+//create list of files
+      var filesList = document.createElement("ul");
+      filesList.classList.add("files-list");
+      displayFiles.appendChild(filesList);
+
+//create particular items (containing files)
       for (var i = 0; i < files.length; i += 1) {
         var filesListItem = document.createElement("li");
         filesListItem.classList.add("files-list-item")
-        displayFilesList.appendChild(filesListItem);
+        filesList.appendChild(filesListItem);
 
+//embed chosen images into list
         var selectedImgHolder = document.createElement("div");
-        selectedImgHolder.classList.add("selected-img-holder")
+        selectedImgHolder.classList.add("selected-img-holder");
+        filesListItem.appendChild(selectedImgHolder);
+
         var selectedImg = document.createElement("img");
         selectedImg.src = window.URL.createObjectURL(files[i]);
         selectedImg.classList.add("selected-img")
         selectedImg.onload = function () {
-          window.URL.revokeObjectURL(this.src);
+         window.URL.revokeObjectURL(this.src)
         }
-        selectedImgHolder.appendChild(selectedImg)
-        filesListItem.appendChild(selectedImgHolder);
+        selectedImgHolder.appendChild(selectedImg);
 
+//create button that change picture
         var changePictureLabel = document.createElement("label");
         changePictureLabel.textContent = "ZMIEŃ ZDJĘCIE";
         changePictureLabel.classList.add("change-picture-label");
         changePictureLabel.setAttribute("for", "files-select-input")
         filesListItem.appendChild(changePictureLabel);
 
+//create the border line between change and remove label
+        var borderChangeRemoveLabels = document.createElement("div");
+        borderChangeRemoveLabels.classList.add("border-change-remove-labels");
+        filesListItem.appendChild(borderChangeRemoveLabels);
+
+//create button that remove picture (whole item)
         var removePictureLabel = document.createElement("label");
         removePictureLabel.textContent = "USUŃ ZDJĘCIE";
         removePictureLabel.classList.add("remove-picture-label");
         filesListItem.appendChild(removePictureLabel);
         removePictureLabel.addEventListener("click", function () {
-          removingPicture(selectedImgHolder)
-        }, false)
+          removingPicture(filesListItem)
+        }, true)
       }
     }
-  function removingPicture(selectedImgHolder) {
-    filesListItem.removeChild(selectedImgHolder);
-    displayFilesPlace.textContent = "Usunięto element"
+    function removingPicture(filesListItem) {
+      filesList.remove(filesListItem);
     }
-  }
 
+  }
 </script>
 </body>
 </html>
