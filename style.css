@@ -1,0 +1,49 @@
+body {
+  margin-top: 100px;
+}
+.files-select-form {
+text-align: center;
+}
+.file-choose-label {
+  border: 2px solid black;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.display-files-list {
+  list-style: none;
+}
+.files-list-item {
+  border: 6px solid grey;
+  margin-top: 10px;
+  max-width: 60%;
+  max-height: 50px;
+  overflow: hidden;
+}
+.selected-img-holder {
+  height: 50px;
+  width: 33%;
+  position: relative;
+  overflow: visible;
+  float: left;
+}
+.selected-img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+.change-picture-label, .remove-picture-label {
+  vertical-align: middle;
+  width: 33%;
+  float: left;
+  margin: 18px auto;
+  font-size: 14px;
+  font-family: sans-serif;
+  cursor: pointer;
+}

@@ -7,15 +7,15 @@
 
 </head>
 <body>
-<form>
+<form class="files-select-form">
   <label for="files-select-input" class="file-choose-label">Wstaw zdjęcie </label>
   <input type="file" id="files-select-input" multiple accept="image/*" style="display: none"
          onchange="addingFiles(files)">
 
-</form>
-<div id="display-files-place">
-</div>
 
+  <div id="display-files-place">
+  </div>
+</form>
 <script type="text/javascript">
 
   var
@@ -26,39 +26,46 @@
       displayFilesPlace.innerHTML = "<p>Nie wybrałeś żadnego zdjęcia</p>";
     } else {
       displayFilesPlace.innerHTML = "";
-      var displayList = document.createElement("ul");
-      displayFilesPlace.appendChild(displayList);
+      var displayFilesList = document.createElement("ul");
+      displayFilesList.classList.add("display-files-list");
+      displayFilesPlace.appendChild(displayFilesList);
       for (var i = 0; i < files.length; i += 1) {
-        var listItem = document.createElement("li");
-        displayList.appendChild(listItem);
+        var filesListItem = document.createElement("li");
+        filesListItem.classList.add("files-list-item")
+        displayFilesList.appendChild(filesListItem);
 
+        var selectedImgHolder = document.createElement("div");
+        selectedImgHolder.classList.add("selected-img-holder")
         var selectedImg = document.createElement("img");
         selectedImg.src = window.URL.createObjectURL(files[i]);
-        selectedImg.height = 60;
+        selectedImg.classList.add("selected-img")
         selectedImg.onload = function () {
           window.URL.revokeObjectURL(this.src);
         }
-        listItem.appendChild(selectedImg);
-
-        var removePictureButton = document.createElement("button");
-        removePictureButton.textContent = "usuń";
-        //removePictureButton.setAttribute("type", "reset")
-        listItem.appendChild(removePictureButton);
-        removePictureButton.addEventListener("click", function () {
-          removingPicture(selectedImg)
-        }, false)
+        selectedImgHolder.appendChild(selectedImg)
+        filesListItem.appendChild(selectedImgHolder);
 
         var changePictureLabel = document.createElement("label");
-        changePictureLabel.textContent = "Zmień zdjęcie";
+        changePictureLabel.textContent = "ZMIEŃ ZDJĘCIE";
+        changePictureLabel.classList.add("change-picture-label");
         changePictureLabel.setAttribute("for", "files-select-input")
-        listItem.appendChild(changePictureLabel);
+        filesListItem.appendChild(changePictureLabel);
+
+        var removePictureLabel = document.createElement("label");
+        removePictureLabel.textContent = "USUŃ ZDJĘCIE";
+        removePictureLabel.classList.add("remove-picture-label");
+        filesListItem.appendChild(removePictureLabel);
+        removePictureLabel.addEventListener("click", function () {
+          removingPicture(selectedImgHolder)
+        }, false)
       }
     }
-    function removingPicture(selectedImg) {
-      listItem.removeChild(selectedImg);
-      displayFilesPlace.textContent = "Usunięto element"
+  function removingPicture(selectedImgHolder) {
+    filesListItem.removeChild(selectedImgHolder);
+    displayFilesPlace.textContent = "Usunięto element"
     }
   }
+
 </script>
 </body>
 </html>
