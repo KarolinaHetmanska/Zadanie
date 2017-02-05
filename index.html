@@ -7,21 +7,21 @@
 </head>
 <body>
 <form id="form">
-<label>Wybierz zdjęcie
-  <input type="file" id="fileSelect" multiple accept="image/*" onchange="addingFiles(this.files)"> </label>
+  <label for="fileSelect">Wybierz zdjęcie </label>
+  <input type="file" id="fileSelect" multiple accept="image/*" data-badge="false" onchange="addingFiles(this.files)">
 
 </form>
-  <div id="fileList">
-    <p>No files selected!</p>
-  </div>
+<div id="fileList">
+  <p>No files selected!</p>
+</div>
 
 
 <script type="text/javascript">
 
 
   var
-     fileList = document.getElementById("fileList");
-  var form = document.getElementById("form")
+    fileList = document.getElementById("fileList"),
+    form = document.getElementById("form");
 
 
   function addingFiles(files) {
@@ -38,39 +38,29 @@
         var img = document.createElement("img");
         img.src = window.URL.createObjectURL(files[i]);
         img.height = 60;
-       // img.onload = function() {
-       //   window.URL.revokeObjectURL(this.src);
-      // }
+        // img.onload = function() {
+        //   window.URL.revokeObjectURL(this.src);
+        // }
         li.appendChild(img);
 
-        var changePictureButton = document.createElement("button");
-        changePictureButton.textContent = "Zmień zdjęcie";
-        li.appendChild(changePictureButton);
-        changePictureButton.addEventListener("click", changingPicture, false);
-
-
         var removePictureButton = document.createElement("button");
-        removePictureButton.innerHTML="usuń";
+        removePictureButton.innerHTML = "usuń";
         li.appendChild(removePictureButton);
         removePictureButton.addEventListener("click", function () {
           removingPicture(img)
         }, false)
 
+        var changePictureLabel = document.createElement("label");
+        changePictureLabel.textContent = "Zmień zdjęcie";
+        changePictureLabel.setAttribute("for", "fileSelect")
+        li.appendChild(changePictureLabel);
       }
     }
-    function removingPicture (img) {
+    function removingPicture(img) {
       li.removeChild(img);
       fileList.textContent = "Usunięto element"
 
     }
-   function changingPicture () {
-      var newInput = document.createElement("input")
-     newInput.setAttribute("type", "file" )
-     newInput.setAttribute("onChange", "addingFiles(this.files)" )
-    form.appendChild(newInput)
-
-    }
-
   }
 
 </script>
