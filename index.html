@@ -2,71 +2,63 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="style.css">
   <title>Zadanie domowe</title>
 
 </head>
 <body>
-<form id="form">
-  <label for="fileSelect">Wybierz zdjęcie </label>
-  <input type="file" id="fileSelect" multiple accept="image/*" style="display: none" onchange="addingFiles(files)">
+<form>
+  <label for="files-select-input" class="file-choose-label">Wstaw zdjęcie </label>
+  <input type="file" id="files-select-input" multiple accept="image/*" style="display: none"
+         onchange="addingFiles(files)">
 
 </form>
-<div id="fileList">
-  <p>No files selected!</p>
+<div id="display-files-place">
 </div>
-
 
 <script type="text/javascript">
 
-
   var
-    fileList = document.getElementById("fileList"),
-    fileSelect = document.getElementById("fileSelect"),
-    form = document.getElementById("form");
-
+    displayFilesPlace = document.getElementById("display-files-place");
 
   function addingFiles(files) {
     if (!files.length) {
-      fileList.innerHTML = "<p>No files selected!</p>";
+      displayFilesPlace.innerHTML = "<p>Nie wybrałeś żadnego zdjęcia</p>";
     } else {
-      fileList.innerHTML = "";
-      var list = document.createElement("ul");
-      fileList.appendChild(list);
-      for (var i = 0; i < files.length; i++) {
-        var li = document.createElement("li");
-        list.appendChild(li);
+      displayFilesPlace.innerHTML = "";
+      var displayList = document.createElement("ul");
+      displayFilesPlace.appendChild(displayList);
+      for (var i = 0; i < files.length; i += 1) {
+        var listItem = document.createElement("li");
+        displayList.appendChild(listItem);
 
-
-        var img = document.createElement("img");
-        img.src = window.URL.createObjectURL(files[i]);
-        img.height = 60;
-        img.onload = function() {
+        var selectedImg = document.createElement("img");
+        selectedImg.src = window.URL.createObjectURL(files[i]);
+        selectedImg.height = 60;
+        selectedImg.onload = function () {
           window.URL.revokeObjectURL(this.src);
         }
-        li.appendChild(img);
+        listItem.appendChild(selectedImg);
 
-
-        var removePictureButton = document.createElement("input");
+        var removePictureButton = document.createElement("button");
         removePictureButton.textContent = "usuń";
-        removePictureButton.setAttribute("type", "reset")
-        li.appendChild(removePictureButton);
+        //removePictureButton.setAttribute("type", "reset")
+        listItem.appendChild(removePictureButton);
         removePictureButton.addEventListener("click", function () {
-          removingPicture(img)
+          removingPicture(selectedImg)
         }, false)
 
         var changePictureLabel = document.createElement("label");
         changePictureLabel.textContent = "Zmień zdjęcie";
-        changePictureLabel.setAttribute("for", "fileSelect")
-        li.appendChild(changePictureLabel);
+        changePictureLabel.setAttribute("for", "files-select-input")
+        listItem.appendChild(changePictureLabel);
       }
     }
-    function removingPicture(img) {
-      li.removeChild(img);
-      fileList.textContent = "Usunięto element"
-
+    function removingPicture(selectedImg) {
+      listItem.removeChild(selectedImg);
+      displayFilesPlace.textContent = "Usunięto element"
     }
   }
-
 </script>
 </body>
 </html>
