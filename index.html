@@ -8,7 +8,7 @@
 <body>
 <form id="form">
   <label for="fileSelect">Wybierz zdjęcie </label>
-  <input type="file" id="fileSelect" multiple accept="image/*" data-badge="false" onchange="addingFiles(this.files)">
+  <input type="file" id="fileSelect" multiple accept="image/*" style="display: none" onchange="addingFiles(files)">
 
 </form>
 <div id="fileList">
@@ -21,6 +21,7 @@
 
   var
     fileList = document.getElementById("fileList"),
+    fileSelect = document.getElementById("fileSelect"),
     form = document.getElementById("form");
 
 
@@ -35,16 +36,19 @@
         var li = document.createElement("li");
         list.appendChild(li);
 
+
         var img = document.createElement("img");
         img.src = window.URL.createObjectURL(files[i]);
         img.height = 60;
-        // img.onload = function() {
-        //   window.URL.revokeObjectURL(this.src);
-        // }
+        img.onload = function() {
+          window.URL.revokeObjectURL(this.src);
+        }
         li.appendChild(img);
 
-        var removePictureButton = document.createElement("button");
-        removePictureButton.innerHTML = "usuń";
+
+        var removePictureButton = document.createElement("input");
+        removePictureButton.textContent = "usuń";
+        removePictureButton.setAttribute("type", "reset")
         li.appendChild(removePictureButton);
         removePictureButton.addEventListener("click", function () {
           removingPicture(img)
