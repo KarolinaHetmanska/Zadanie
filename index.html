@@ -73,13 +73,14 @@
         removePictureLabel.classList.add("remove-picture-label");
         filesListItem.appendChild(removePictureLabel);
         removePictureLabel.addEventListener("click", function () {
-          removingPicture(filesListItem)
+          removingPicture(this.parentNode)
+          console.log(this.parentNode)
         }, true)
       }
     }
-    function removingPicture(filesListItem) {
-      filesList.remove(filesListItem);
-    }
+  function removingPicture(item) {
+    filesList.removeChild(item);
+  }
   }
 </script>
 </body>
