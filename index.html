@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <link rel="stylesheet" href="css/style.css"/>
   <title>Zadanie domowe</title>
 </head>
 <body>
@@ -29,17 +29,15 @@
     if (!files.length) {
       displayFiles.innerHTML = "<p>Nie wybrałeś żadnego zdjęcia</p>";
     } else {
-      displayFiles.innerHTML = "";
 
 //create list of files
       var filesList = document.createElement("ul");
       filesList.classList.add("files-list");
       displayFiles.appendChild(filesList);
 
-//create particular items (containing files)
+//create particular list items (containing files)
       for (var i = 0; i < files.length; i += 1) {
         var filesListItem = document.createElement("li");
-        filesListItem.classList.add("files-list-item")
         filesList.appendChild(filesListItem);
 
 //embed chosen images into list
@@ -49,25 +47,27 @@
 
         var selectedImg = document.createElement("img");
         selectedImg.src = window.URL.createObjectURL(files[i]);
-        selectedImg.classList.add("selected-img")
         selectedImg.onload = function () {
-         window.URL.revokeObjectURL(this.src)
+          window.URL.revokeObjectURL(this.src)
         }
         selectedImgHolder.appendChild(selectedImg);
 
-//create button that change picture
+//create button that changes picture
         var changePictureLabel = document.createElement("label");
         changePictureLabel.textContent = "ZMIEŃ ZDJĘCIE";
         changePictureLabel.classList.add("change-picture-label");
         changePictureLabel.setAttribute("for", "files-select-input")
         filesListItem.appendChild(changePictureLabel);
+        changePictureLabel.addEventListener("click", function () {
+          removingPicture(this.parentNode)
+        }, false)
 
 //create the border line between change and remove label
         var borderChangeRemoveLabels = document.createElement("div");
         borderChangeRemoveLabels.classList.add("border-change-remove-labels");
         filesListItem.appendChild(borderChangeRemoveLabels);
 
-//create button that remove picture (whole item)
+//create button that removes picture (whole item)
         var removePictureLabel = document.createElement("label");
         removePictureLabel.textContent = "USUŃ ZDJĘCIE";
         removePictureLabel.classList.add("remove-picture-label");
@@ -78,9 +78,9 @@
         }, true)
       }
     }
-  function removingPicture(item) {
-    filesList.removeChild(item);
-  }
+    function removingPicture(item) {
+      filesList.removeChild(item);
+    }
   }
 </script>
 </body>

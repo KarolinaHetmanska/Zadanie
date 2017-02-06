@@ -15,16 +15,15 @@ body {
 .files-list {
   padding-left: 20px;
   list-style: none;
-}
-
-.files-list-item {
-  max-width: 60%;
-  max-height: 50px;
-  padding: 1px;
-  border: 7px solid $grey;
-  margin-top: 10px;
-  text-align: center;
-  overflow: hidden;
+  li {
+    max-width: 60%;
+    max-height: 50px;
+    padding: 1px;
+    border: 7px solid $grey;
+    margin-top: 10px;
+    text-align: center;
+    overflow: hidden;
+  }
 }
 
 .selected-img-holder {
@@ -33,13 +32,12 @@ body {
   position: relative;
   overflow: hidden;
   float: left;
-}
-
-.selected-img {
-  max-width: 100%;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+  img {
+    max-width: 100%;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
 }
 
 .change-picture-label, .remove-picture-label {
@@ -69,11 +67,11 @@ body {
   }
   .files-list {
     padding-left: 0;
-  }
-  .files-list-item {
-    max-width: 400px;
-    max-height: 100%;
-    margin: 10px auto;
+    li {
+      max-width: 400px;
+      max-height: 100%;
+      margin: 10px auto;
+    }
   }
   .selected-img-holder {
     width: $label-width-mobile;
