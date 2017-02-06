@@ -1,45 +1,38 @@
 body {
   margin-top: 100px;
-  font-family: sans-serif;
-}
+  font-family: sans-serif; }
 
 .files-select-form {
-  text-align: center;
-}
+  text-align: center; }
 
 .file-choose-label {
   border: 2px solid black;
   padding: 5px;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .files-list {
-  list-style: none;
-}
+  list-style: none; }
 
 .files-list-item {
-  border: 7px solid grey;
+  border: 7px solid blue;
   margin-top: 10px;
   max-width: 60%;
   max-height: 50px;
   overflow: hidden;
-  padding: 1px;
-}
+  padding: 1px; }
 
 .selected-img-holder {
   height: 50px;
   width: 33%;
   position: relative;
   overflow: hidden;
-  float: left;
-}
+  float: left; }
 
 .selected-img {
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  max-width: 100%;
-}
+  max-width: 100%; }
 
 .change-picture-label, .remove-picture-label {
   vertical-align: middle;
@@ -49,13 +42,13 @@ body {
   font-size: 14px;
   font-family: sans-serif;
   font-weight: 600;
-  cursor: pointer;
-}
+  cursor: pointer; }
 
 .border-change-remove-labels {
   border-right: 1px solid darkgrey;
   float: left;
   height: 32px;
   width: 0;
-  margin: 9px auto;
-}
+  margin: 9px auto; }
+
+/*# sourceMappingURL=style.css.map */
