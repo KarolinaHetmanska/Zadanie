@@ -2,62 +2,101 @@
 
 body {
   margin-top: 100px;
-  font-family: sans-serif;
-}
-
-.files-select-form {
-  text-align: center;
+  font-family: $main-font;
 }
 
 .file-choose-label {
-  border: 2px solid black;
   padding: 5px;
-  cursor: pointer;
+  border: 2px solid black;
+  margin-left: 20px;
+  cursor: $pointer;
 }
 
 .files-list {
+  padding-left: 20px;
   list-style: none;
 }
 
 .files-list-item {
-  border: 7px solid $blabla;
-  margin-top: 10px;
   max-width: 60%;
   max-height: 50px;
-  overflow: hidden;
   padding: 1px;
+  border: 7px solid $grey;
+  margin-top: 10px;
+  text-align: center;
+  overflow: hidden;
 }
 
 .selected-img-holder {
+  width: $label-width-large;
   height: 50px;
-  width: 33%;
   position: relative;
   overflow: hidden;
   float: left;
 }
 
 .selected-img {
+  max-width: 100%;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
-  max-width: 100%;
 }
 
 .change-picture-label, .remove-picture-label {
-  vertical-align: middle;
-  width: 33%;
-  float: left;
+  width: $label-width-large;
   margin: 18px auto;
+  vertical-align: middle;
+  float: left;
   font-size: 14px;
-  font-family: sans-serif;
   font-weight: 600;
-  cursor: pointer;
+  cursor: $pointer;
 }
 
 .border-change-remove-labels {
-  border-right: 1px solid darkgrey;
-  float: left;
-  height: 32px;
   width: 0;
+  height: 32px;
+  border-right: 1px solid $light-grey;
   margin: 9px auto;
+  float: left;
+}
+
+@media screen and (max-width: 700px) {
+  .files-select-form {
+    text-align: center;
+  }
+  .file-choose-label {
+    margin: auto;
+  }
+  .files-list {
+    padding-left: 0;
+  }
+  .files-list-item {
+    max-width: 400px;
+    max-height: 100%;
+    margin: 10px auto;
+  }
+  .selected-img-holder {
+    width: $label-width-mobile;
+    clear: both;
+  }
+  .change-picture-label, .remove-picture-label {
+    width: $label-width-mobile;
+    margin: 10px auto;
+    display: block;
+    clear: both;
+  }
+  .border-change-remove-labels {
+    width: 80%;
+    height: 0;
+    border-bottom: 1px solid darkgrey;
+    margin: auto;
+    float: none;
+    clear: both;
+  }
+}
+
+@media screen and (min-width: 1600px) {
+  .files-list-item {
+    max-width: 960px;
+  }
 }

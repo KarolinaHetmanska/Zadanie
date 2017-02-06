@@ -2,53 +2,88 @@ body {
   margin-top: 100px;
   font-family: sans-serif; }
 
-.files-select-form {
-  text-align: center; }
-
 .file-choose-label {
-  border: 2px solid black;
   padding: 5px;
+  border: 2px solid black;
+  margin-left: 20px;
   cursor: pointer; }
 
 .files-list {
+  padding-left: 20px;
   list-style: none; }
 
 .files-list-item {
-  border: 7px solid blue;
-  margin-top: 10px;
   max-width: 60%;
   max-height: 50px;
-  overflow: hidden;
-  padding: 1px; }
+  padding: 1px;
+  border: 7px solid #808080;
+  margin-top: 10px;
+  text-align: center;
+  overflow: hidden; }
 
 .selected-img-holder {
-  height: 50px;
   width: 33%;
+  height: 50px;
   position: relative;
   overflow: hidden;
   float: left; }
 
 .selected-img {
+  max-width: 100%;
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
-  max-width: 100%; }
+  transform: translateY(-50%); }
 
 .change-picture-label, .remove-picture-label {
-  vertical-align: middle;
   width: 33%;
-  float: left;
   margin: 18px auto;
+  vertical-align: middle;
+  float: left;
   font-size: 14px;
-  font-family: sans-serif;
   font-weight: 600;
   cursor: pointer; }
 
 .border-change-remove-labels {
-  border-right: 1px solid darkgrey;
-  float: left;
-  height: 32px;
   width: 0;
-  margin: 9px auto; }
+  height: 32px;
+  border-right: 1px solid #A9A9A9;
+  margin: 9px auto;
+  float: left; }
+
+@media screen and (max-width: 700px) {
+  .files-select-form {
+    text-align: center; }
+
+  .file-choose-label {
+    margin: auto; }
+
+  .files-list {
+    padding-left: 0; }
+
+  .files-list-item {
+    max-width: 400px;
+    max-height: 100%;
+    margin: 10px auto; }
+
+  .selected-img-holder {
+    width: 100%;
+    clear: both; }
+
+  .change-picture-label, .remove-picture-label {
+    width: 100%;
+    margin: 10px auto;
+    display: block;
+    clear: both; }
+
+  .border-change-remove-labels {
+    width: 80%;
+    height: 0;
+    border-bottom: 1px solid darkgrey;
+    margin: auto;
+    float: none;
+    clear: both; } }
+@media screen and (min-width: 1600px) {
+  .files-list-item {
+    max-width: 960px; } }
 
 /*# sourceMappingURL=style.css.map */
